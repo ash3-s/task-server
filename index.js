@@ -4,15 +4,15 @@ const cors = require("cors");
 
 const app = express();
 
-const port = process.env.PORT || 8000; // Change to your desired port
+const port = process.env.PORT || 8000; 
 
 // Middleware to parse JSON and form data
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files (if needed)
-// app.use(express.static('public'));
+
+
 
 // Start the server
 
@@ -57,6 +57,7 @@ app.post("/addTask", async (req, res) => {
     });
 });
 
+//Endpoint to get all tasks
 app.get("/getTasks", async (req, res) => {
   try {
     const db = client.db("123");
@@ -72,6 +73,7 @@ app.get("/getTasks", async (req, res) => {
   }
 });
 
+//Endpoint to update tasks
 app.post("/updateTasks", async (req, res) => {
   const { tasks } = req.body; // tasks is an object with arrays for todo, inProgress, done
   const db = client.db("123");
@@ -110,6 +112,7 @@ app.post("/deleteTask", async (req, res) => {
     });
 });
 
+//Endpoint to edit a task
 app.post("/editTask", async (req, res) => {
   const { column, taskId, name, description } = req.body;
   const db = client.db("123");
